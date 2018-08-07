@@ -16,11 +16,11 @@
 <ul>
   <li>LegLeg Contract Address : <span id="contractAddr"></span></li>
   <li>Your Account Address : <span id="accountAddr"></span></li>
-  <li>Game 1 => 50%  ethx2 </li>
-  <li>Game 2 => 20%  ethx5 </li>
+  <li>Game 1 => 50%  eth x2 </li>
+  <li>Game 2 => 20%  eth x5 </li>
   <li>컨트랙트에 저장된 값: <span id="storedData"></span>
-    <button onclick="getValue()">새로고침</button> (현재블록: <span id="lastBlock"></span>)</li>
-  <li><input id="newValue" type="text"><button onclick="setValue()">Gazua!!</button>
+    <button onclick="getValue()">Refresh</button> (Current Block: <span id="deposit"></span>)</li>
+  <li><input id="newValue" type="text"><button onclick="setValue()">GAZUA !!!</button>
       <div id="result"></div></li>
 </ul>
 
@@ -28,7 +28,7 @@
 <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
 <!-- script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script -->
 <script>
-var contractAddress = '0xb50466128abc428a7ccb731876324cce41786362';
+var contractAddress = '0xd658db29ddf32b6b2c6ae25d54566df447eb8241';
 var abi = [{"constant":false,"inputs":[{"name":"choiceNum","type":"uint256"}],"name":"choice","outputs":[{"name":"","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"game1","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"game2","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"checkBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"deposit","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"beneficiary","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Failed","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"beneficiary","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Successed","type":"event"}];
 var simpleStorageContract;
 var simpleStorage;
@@ -68,8 +68,8 @@ function getValue() {
     document.getElementById('storedData').innerHTML=r.toNumber();
 
   });
-  web3.eth.getBlockNumber(function(e,r){
-    document.getElementById('lastBlock').innerHTML = r;
+  simpleStorage.deposit(function(e,r){
+    document.getElementById('deposit').innerHTML = r;
   });
 }
 
