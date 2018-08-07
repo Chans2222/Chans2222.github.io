@@ -18,8 +18,8 @@
   <li>Your Account Address : <span id="accountAddr"></span></li>
   <li>Game 1 => 50%  eth x2 </li>
   <li>Game 2 => 20%  eth x5 </li>
-  <li>컨트랙트에 저장된 값: <span id="storedData"></span>
-    <button onclick="getValue()">Deposit</button> (FUND: <span id="fund"></span>)</li>
+  <li>컨트랙트에 저장된 값: <span id="fund"></span>
+    <button onclick="depo()">Deposit</button> (FUND: <span id="fund"></span>)</li>
   <li><input id="newValue" type="text"><button onclick="setValue()">GAZUA !!!</button>
       <div id="result"></div></li>
 </ul>
@@ -64,9 +64,11 @@ function getLink(addr) {
 }
 
 function getValue() {
-  simpleStorage.checkBalance(function(e,r){
-    document.getElementById('fund').innerHTML = r;
-  });
+    document.getElementById('fund').innerHTML = simpleStorage.checkBalance();
+}
+
+function depo() {
+  simpleStorage.deposit();
 }
 
 function setValue() {
