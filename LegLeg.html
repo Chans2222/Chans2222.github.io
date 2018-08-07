@@ -53,13 +53,7 @@ function startApp() {
   simpleStorage = simpleStorageContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
   web3.eth.getAccounts(function(e,r){
-    if(!e) {
       document.getElementById('accountAddr').innerHTML = getLink(r[0]);
-      console.log(getLink(r[0]));
-    }
-    else
-      console.error(e);
-
   });
 
   getValue();
