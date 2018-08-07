@@ -20,7 +20,7 @@
   <li>Game 2 => 20%  eth x5 </li>
   <li><button onclick="depo()">Deposit</button> (FUND: <span id="fund"></span>)</li>
   <li><input id="newValue" type="text"><button onclick="setValue()">GAZUA !!!</button>
-      <div> id="result"></div></li>
+      <div id="result"></div></li>
 </ul>
 
 </body>
@@ -53,7 +53,13 @@ function startApp() {
   simpleStorage = simpleStorageContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
   web3.eth.getAccounts(function(e,r){
-    document.getElementById('accountAddr').innerHTML = getLink(r[0]);
+    if(!e) {
+      document.getElementById('accountAddr').innerHTML = getLink(r[0]);
+      console.log(getLink(r[0]);
+    }
+    else
+      console.error(e);
+
   });
 
   getValue();
@@ -65,7 +71,6 @@ function getLink(addr) {
 
 function getValue() {
     document.getElementById('fund').innerHTML = simpleStorage.checkBalance();
-
 }
 
 function depo() {
