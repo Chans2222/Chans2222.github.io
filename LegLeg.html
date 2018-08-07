@@ -18,10 +18,9 @@
   <li>Your Account Address : <span id="accountAddr"></span></li>
   <li>Game 1 => 50%  eth x2 </li>
   <li>Game 2 => 20%  eth x5 </li>
-  <li>컨트랙트에 저장된 값: <span id="fund"></span>
-    <button onclick="depo()">Deposit</button> (FUND: <span id="fund"></span>)</li>
+  <li><button onclick="depo()">Deposit</button> (FUND: <span id="fund"></span>)</li>
   <li><input id="newValue" type="text"><button onclick="setValue()">GAZUA !!!</button>
-      <div id="result"></div></li>
+      <div> id="result"></div></li>
 </ul>
 
 </body>
@@ -32,6 +31,7 @@ var contractAddress = '0xd658db29ddf32b6b2c6ae25d54566df447eb8241';
 var abi = [{"constant":false,"inputs":[{"name":"choiceNum","type":"uint256"}],"name":"choice","outputs":[{"name":"","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"game1","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"game2","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"checkBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"deposit","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"beneficiary","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Failed","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"beneficiary","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Successed","type":"event"}];
 var simpleStorageContract;
 var simpleStorage;
+
 
 window.addEventListener('load', function() {
 
@@ -65,6 +65,7 @@ function getLink(addr) {
 
 function getValue() {
     document.getElementById('fund').innerHTML = simpleStorage.checkBalance();
+
 }
 
 function depo() {
