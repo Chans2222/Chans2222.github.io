@@ -18,7 +18,7 @@
   <li>Your Account Address : <span id="accountAddr"></span></li>
   <li>Game 1 => 50%  eth x2 </li>
   <li>Game 2 => 20%  eth x5 </li>
-  <li><button onclick="depo()">Deposit</button> (FUND: <span id="fund"></span>)</li>
+  <li><button onclick="depo">Deposit</button> (FUND: <span id="fund"></span>)</li>
   <li><input id="newValue" type="text"><button onclick="getValue()">GAZUA !!!</button></li>
 </ul>
 
@@ -70,12 +70,13 @@ function getValue() {
   });
 }
 
-function depo() {
-  web3.eth.sendTransaction({
-    from: '0x50D487BE7017815BC6aAe1Be4D6F8f62b21c9230',
-    to: '0xd658db29ddf32b6b2c6ae25d54566df447eb8241',
-    value: '100000000000000'
-})
+function depos() {
+  simpleStorage.deposit(function(e,r) {
+    if (!e)
+      document.getElementById('depo').innerHTML = r;
+    else
+      console.error(e);
+  });
 }
 
 </script>
