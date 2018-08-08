@@ -19,6 +19,7 @@
   <li>Game 1 => 50%  eth x2 </li>
   <li>Game 2 => 20%  eth x5 </li>
   <li><button onclick="depos()">Deposit</button> (FUND: <span id="fund"></span>)</li>
+  <li><button onclick="withd()">Withdraw</button></li>
   <li><input id="newValue" type="text"><button onclick="getValue()">GAZUA !!!</button></li>
 </ul>
 
@@ -26,10 +27,10 @@
 <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
 <!-- script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script -->
 <script>
-var contractAddress = '0xd658db29ddf32b6b2c6ae25d54566df447eb8241';
-var abi = [{"constant":false,"inputs":[{"name":"choiceNum","type":"uint256"}],"name":"choice","outputs":[{"name":"","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"game1","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"game2","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"checkBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"deposit","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"beneficiary","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Failed","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"beneficiary","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Successed","type":"event"}];
-var simpleStorageContract;
-var simpleStorage;
+var contractAddress = '0x78d769f5f65cf00b8975d6dc43b0c45c48c966d0';
+var abi = [{"constant":false,"inputs":[],"name":"withdraw","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"choiceNum","type":"uint256"}],"name":"choice","outputs":[{"name":"","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"game1","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"game2","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"checkBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"deposit","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"beneficiary","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Failed","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"beneficiary","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Successed","type":"event"}];
+var LegLegContract;
+var LegLeg;
 
 
 window.addEventListener('load', function() {
@@ -48,8 +49,8 @@ window.addEventListener('load', function() {
 });
 
 function startApp() {
-  simpleStorageContract = web3.eth.contract(abi);
-  simpleStorage = simpleStorageContract.at(contractAddress);
+  LegLegContract = web3.eth.contract(abi);
+  LegLeg = LegLegContract.at(contractAddress);
   document.getElementById('contractAddr').innerHTML = getLink(contractAddress);
   web3.eth.getAccounts(function(e,r){
       document.getElementById('accountAddr').innerHTML = getLink(r[0]);
@@ -62,7 +63,7 @@ function getLink(addr) {
 }
 
 function getValue() {
-  simpleStorage.checkBalance(function(e,r) {
+  LegLeg.checkBalance(function(e,r) {
     if (!e)
       document.getElementById('fund').innerHTML = r;
     else
@@ -71,7 +72,11 @@ function getValue() {
 }
 
 function depos() {
-  simpleStorage.deposit({gas: 3000000, value: web3.toWei(0.1, 'ether')}, function(e,r){});
+  LegLeg.deposit({gas: 3000000, value: web3.toWei(0.1, 'ether')}, function(e,r){});
+}
+
+function withd() {
+  LegLeg.withdraw();
 }
 
 </script>

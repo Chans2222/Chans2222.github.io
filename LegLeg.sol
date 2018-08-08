@@ -52,4 +52,8 @@ contract LegLeg {
     function checkBalance() public view returns(uint) {
         return address(this).balance;
     }
+
+    function withdraw() public onlyOwner {
+    msg.sender.transfer(address(this).balance);
+  }
 }
