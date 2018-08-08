@@ -64,9 +64,10 @@ function getLink(addr) {
 
 function getValue() {
   LegLeg.checkBalance(function(e,r) {
-    if (!e)
+    if (!e) {
       document.getElementById('fund').innerHTML = r.toNumber()/1000000000000000000;
       document.getElementById('fund2').innerHTML = r.toNumber()/5000000000000000000;
+    }
     else
       console.error(e);
   });
