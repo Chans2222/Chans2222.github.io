@@ -71,7 +71,7 @@ function getValue() {
 }
 
 function depos() {
-  simpleStorage.deposit({gas: 3000000, value: web3.utils.toWei(0.1, 'ether')}, function(e,r){});
+  simpleStorage.deposit({gas: 3000000, value: web3.toWei(0.1, 'ether')}, function(e,r){});
 }
 
 </script>
