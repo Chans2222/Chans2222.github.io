@@ -54,6 +54,6 @@ contract LegLeg {
     }
 
     function withdraw() public onlyOwner {
-    msg.sender.transfer(address(this).balance);
+        msg.sender.transfer(address(this).balance);
   }
 }
