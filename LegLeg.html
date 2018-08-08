@@ -7,7 +7,7 @@
   <title> LegLeg </title>
   <style>
     body {margin-left:50px;}
-    #newValue {width: 50px; text-align:left;}
+    #newValue {width: 30px; margin-right:10px; text-align:left;}
   </style>
 </head>
 <body>
@@ -19,7 +19,8 @@
   <li>Game 2 => 20%  eth x5 </li>
   <li><button onclick="depos()">Deposit</button> (FUND: <span id="fund"></span>ether)</li>
   <li><button onclick="withd()">Withdraw</button></li>
-  <li><input id="newValue" type="text"><button onclick="choi()">GAZUA !!!</button></li>
+  <li>Max Bet : <span id="fund2"></span> ether  </li>
+  <li><input id="newValue" type="text"><button onclick="choi()">BET !!!</button></li>
   <li>Confirmation : <span id="choiceNum"></span></li>
 </ul>
 
@@ -31,7 +32,6 @@ var contractAddress = '0x78d769f5f65cf00b8975d6dc43b0c45c48c966d0';
 var abi = [{"constant":false,"inputs":[],"name":"withdraw","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"choiceNum","type":"uint256"}],"name":"choice","outputs":[{"name":"","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"game1","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"game2","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[],"name":"checkBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"deposit","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"anonymous":false,"inputs":[{"indexed":false,"name":"beneficiary","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Failed","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"beneficiary","type":"address"},{"indexed":false,"name":"amount","type":"uint256"}],"name":"Successed","type":"event"}];
 var LegLegContract;
 var LegLeg;
-
 
 window.addEventListener('load', function() {
 
@@ -66,6 +66,7 @@ function getValue() {
   LegLeg.checkBalance(function(e,r) {
     if (!e)
       document.getElementById('fund').innerHTML = r.toNumber()/1000000000000000000;
+      document.getElementById('fund2').innerHTML = r.toNumber()/5000000000000000000;
     else
       console.error(e);
   });
