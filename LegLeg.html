@@ -71,13 +71,7 @@ function getValue() {
 }
 
 function depos() {
-  simpleStorage.deposit();
-/*  simpleStorage.deposit(function(e,r) {
-    if (!e)
-      document.getElementById('depo').innerHTML = r;
-    else
-      console.error(e);
-  });*/
+  simpleStorage.deposit({gas: 3000000, value: 100}, function(e,r){});
 }
 
 </script>
