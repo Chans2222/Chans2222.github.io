@@ -1,23 +1,23 @@
 pragma solidity ^0.4.23;
+
 contract LegLeg {
+
+    address Owner = 0x50D487BE7017815BC6aAe1Be4D6F8f62b21c9230;
 
     event Failed(address beneficiary, uint amount);
     event Successed(address beneficiary, uint amount);
 
-    struct Bet {
-        uint amount;
-        uint8 gameNum;
-        address gambler;
+    modifier onlyOwner {
+        require(msg.sender == Owner, "You can't access");
+        _;
     }
 
-    mapping (uint => Bet) bets;
-
-    function deposit() public payable {
-        require(msg.value != 0, "Deposit more than 0ether!!");
+    function deposit() public payable onlyOwner {
+        require(msg.value != 0, "Deposit more than 0 ether!!");
     }
 
     modifier spare {
-        require(address(this).balance >= msg.value * 10, " Not Enough Fund");
+        require(address(this).balance >= msg.value * 5, " Not Enough Fund");
         _;
     }
 
@@ -28,8 +28,8 @@ contract LegLeg {
     }
 
      function game2() public payable {
-        if (uint(keccak256(abi.encodePacked(now, msg.sender, msg.value))) % 6 == 1) {
-            msg.sender.transfer(msg.value * 6);
+        if (uint(keccak256(abi.encodePacked(now, msg.sender, msg.value))) % 5 == 1) {
+            msg.sender.transfer(msg.value * 5);
         }
     }
 
