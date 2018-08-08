@@ -62,7 +62,12 @@ function getLink(addr) {
 }
 
 function getValue() {
-    document.getElementById('fund').innerHTML = simpleStorage.checkBalance();
+  simpleStorage.checkBalance(function(e,r) {
+    if (!e)
+      document.getElementById('fund').innerHTML = r;
+    else
+      console.error(e);
+  )};
 }
 
 function depo() {
