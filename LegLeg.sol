@@ -16,10 +16,10 @@ contract LegLeg {
         require(msg.value != 0, "Deposit more than 0 ether!!");
     }
 
-    /*modifier spare {
+    modifier spare {
         require(address(this).balance >= msg.value * 5, " Not Enough Fund");
         _;
-    }*/
+    }
 
     function game1() public payable {
         if (uint(keccak256(abi.encodePacked(now, msg.sender, msg.value))) % 2 == 1) {
@@ -33,14 +33,14 @@ contract LegLeg {
         }
     }
 
-     function choice(uint choiceNum) public payable returns(uint) {
+     function choice(uint choiceNum) public payable spare returns(uint) {
         if (choiceNum == 1) {
-            require(address(this).balance >= msg.value * 2, " Not Enough Fund");
+            //require(address(this).balance >= msg.value * 2, " Not Enough Fund");
             game1();
             emit Successed(msg.sender, msg.value);
         }
         else if (choiceNum == 2) {
-            require(address(this).balance >= msg.value * 5, " Not Enough Fund");
+            //require(address(this).balance >= msg.value * 5, " Not Enough Fund");
             game2();
             emit Successed(msg.sender, msg.value);
         }
