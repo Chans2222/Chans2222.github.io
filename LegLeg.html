@@ -20,7 +20,9 @@
   <li>Game 2 => 20%  eth x5 </li>
   <li><button onclick="depos()">Deposit</button> (FUND: <span id="fund"></span>ether)</li>
   <li><button onclick="withd()">Withdraw</button></li>
-  <li>Max Bet : <span id="fund2"></span> ether <input id="newValu" type="text"></li>
+  <li>Game 1 Max Bet : <span id="fund3"></span> ether </li>
+  <li>Game 2 Max Bet : <span id="fund2"></span> ether </li>
+  <li>Insert Amount : <input id="newValu" type="text"></li>
   <li>Game Select : 1 or 2<input id="newValue" type="text"><button onclick="choi()">BET !!!</button></li>
   <li>Confirmation : <span id="choiceNum"></span></li>
 </ul>
@@ -68,6 +70,7 @@ function getValue() {
     if (!e) {
       document.getElementById('fund').innerHTML = r.toNumber()/1000000000000000000;
       document.getElementById('fund2').innerHTML = r.toNumber()/5000000000000000000;
+      document.getElementById('fund3').innerHTML = r.toNumber()/2000000000000000000;
     }
     else
       console.error(e);
