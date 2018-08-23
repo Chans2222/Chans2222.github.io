@@ -25,7 +25,7 @@ contract LegLeg {
     function game1(uint inputNum) public payable {
         randNum = uint(keccak256(abi.encodePacked(now, msg.sender, msg.value))) % 100;
         if (inputNum >= randNum) {
-            msg.sender.transfer(msg.value * 98.5/inputNum);
+            msg.sender.transfer(msg.value * 985 / inputNum * 10);
         }
     }
 
@@ -35,7 +35,7 @@ contract LegLeg {
         }
     }*/
 
-     function choice(uint choiceNum) public payable spare returns(uint) {
+/*     function choice(uint choiceNum) public payable spare returns(uint) {
         if (choiceNum == 1) {
             //require(address(this).balance >= msg.value * 2, " Not Enough Fund");
             game1();
@@ -51,7 +51,7 @@ contract LegLeg {
             emit Failed(msg.sender, msg.value);
             choiceNum == 1;
         }
-    }
+    }*/
 
     function checkBalance() public view returns(uint) {
         return address(this).balance;
